@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Animation Layer -->
+    <canvas id="hearts-canvas"></canvas>
+
+    <div class="container">
+
+
+        <!-- Screen 0: Login -->
+        <div id="screen-login" class="screen active">
+            <h1>Login</h1>
+            <p>Enter the secret password to enter:</p>
+            <p style="font-size: 0.9rem; margin-top: -10px; margin-bottom: 20px; font-style: italic;">What do I call
+                you? (all letters small) and don't forget to click on the music button down below </p>
+            <input type="password" id="password-input" placeholder="Secret Password..." class="login-input">
+            <button class="btn btn-yes" onclick="checkPassword()">Enter</button>
+            <p id="error-message" style="color: #d32f2f; display: none; margin-top: 10px;">Incorrect Password!</p>
+        </div>
+
+        <!-- Screen 1: The Question -->
+        <div id="screen1" class="screen">
+            <img src="IMG_20221018_214436.jpg" alt="Cute character asking question">
+            <h1>Laddoo,</h1>
+            <p>Will you be my Valentine?</p>
+            <div>
+                <button class="btn btn-yes" onclick="showScreen('screen2')">YES OF COURSE</button>
+                <button class="btn btn-no" onclick="showModal()">NO THANK YOU</button>
+            </div>
+        </div>
+
+        <!-- Screen 2: The Gifts Selection -->
+        <div id="screen2" class="screen">
+            <h1>You've made me the happiest man in this world. Thank you.</h1>
+            <p>Few things for my Laddoo</p>
+            <div class="gift-container">
+                <!-- Gift 1: Letters -->
+                <div class="gift-box" onclick="showScreen('screen4')">
+                    💌
+                    <span>Letter</span>
+                </div>
+                <!-- Gift 2: Virtual Flower -->
+                <div class="gift-box" onclick="showScreen('screen3')">
+                    🌹
+                    <span>Virtual Flower</span>
+                </div>
+                <!-- Gift 3: What's Waiting For You -->
+                <div class="gift-box" onclick="showScreen('screen5')">
+                    �
+                    <span>What's Waiting For You</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Virtual Flower -->
+        <div id="screen3" class="screen">
+            <h1>Virtual Flower</h1>
+            <div class="bubbles-grid">
+                <div class="bubble">No flower can justify your beauty</div>
+                <div class="bubble">My life is incomplete without you</div>
+            </div>
+
+            <!-- Central Photo for Virtual Flower -->
+            <img src="flower.png" alt="Virtual Flower Photo" style="width: 200px; border-radius: 15px;">
+
+            <div class="bubbles-grid">
+                <div class="bubble">I will love you till my last breath</div>
+                <div class="bubble">You are my first, last and complete love</div>
+            </div>
+
+            <button class="nav-btn" onclick="showScreen('screen2')">⬅ Back to Gifts</button>
+        </div>
+
+        <!-- Screen 4: The Letter -->
+        <div id="screen4" class="screen">
+            <h1>Words from my Heart</h1>
+            <div class="letter">
+                <p><strong>My Dearest Valentine,</strong></p>
+                <p>I don't know how to apologize for everything I've done wrong,
+                    but I promise to make it up to you with my love and care. I've never
+                    been able to imagine my life without you and I know I never will be able to.
+                    I don't know what I would do without you.</p>
+                <p>I may not always say it perfectly, but please know that you are my everything.
+                    You are my life, my joy, my love, my last, my complete.
+                </p>
+                <p style="text-align: right;"><strong>Forever Only Yours, Dhruv</strong>
+                </p>
+            </div>
+            <button class="nav-btn" onclick="showScreen('screen2')">⬅ Back to Gifts</button>
+        </div>
+
+        <!-- Screen 5: What's Waiting For You -->
+        <div id="screen5" class="screen">
+            <h1>What's Waiting For You</h1>
+
+            <div class="note-container">
+                <p>My love, there is so much waiting for you. First of all, I!!! I can't wait to see you,
+                    hug you, and kiss you. ME.
+                </p>
+
+                <img src="8.HEIC" alt="Our Memory" class="note-image">
+
+                <p>A long held apology, I am sorry for not being there for you when you needed me the most.
+                    But again, I don't ever wanna make you feel that way and will give my everything to
+                    be able to do that.</p>
+
+                <img src="9.HEIC" alt="Another Memory" class="note-image">
+
+                <p>A lot of gifts, a lot of love, a lot of hugs, a lot of kisses, a lot of cuddles,
+                    a lot of everything, a lot of dates, a lot of gurgaon trips, a lot of love once again.
+                </p>
+
+                <img src="10.HEIC" alt="Our Memory" class="note-image">
+
+                <p>Something very exciting.
+                </p>
+
+                <img src="11.HEIC" alt="Our Memory" class="note-image">
+
+                <p>And a beautiful beautiful Valentine Date. Not the last thing waiting for you,
+                    but definitely one of the most special ones.
+                </p>
+
+                <img src="12.HEIC" alt="Our Memory" class="note-image">
+
+                <p>I promise to make every day worth the wait.</p>
+            </div>
+
+            <button class="nav-btn" onclick="showScreen('screen2')">⬅ Back to Gifts</button>
+        </div>
+
+    </div>
+
+    <!-- Modal for "No" -->
+    <div id="modal-overlay">
+        <div class="modal-content">
+            <img src="IMG-20240215-WA0035.jpg" alt="Broken Heart" style="width: 80px; margin-bottom: 15px;">
+            <h2>Try again please :(</h2>
+            <p>My heart can't take no for an answer!</p>
+            <button class="btn btn-yes" onclick="closeModal()">Okay, I'll try again</button>
+        </div>
+    </div>
+
+
+    <!-- Music Player Widget -->
+    <div id="music-control" onclick="toggleMusic()">
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
