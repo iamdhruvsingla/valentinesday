@@ -13,8 +13,9 @@ function showScreen(screenId) {
     screens.forEach(screen => {
         screen.classList.remove('active');
         // Reset scroll position for letter
-        if (screen.querySelector('.letter')) {
-            screen.querySelector('.letter').scrollTop = 0;
+        const scrollable = screen.querySelector('.letter, .note-container');
+        if (scrollable) {
+            scrollable.scrollTop = 0;
         }
     });
 
